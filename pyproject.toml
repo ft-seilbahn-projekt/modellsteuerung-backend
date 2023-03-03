@@ -10,6 +10,8 @@ packages = [{include = "modellsteuerung_backend"}]
 python = "^3.11"
 fastapi = "^0.92.0"
 uvicorn = "^0.20.0"
+coloredlogs = "^15.0.1"
+colorama = "^0.4.6"
 
 [build-system]
 requires = ["poetry-core"]
