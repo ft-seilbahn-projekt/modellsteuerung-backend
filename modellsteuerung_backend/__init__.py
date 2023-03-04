@@ -15,12 +15,14 @@ async def startup_event():
     logger.info("Starting up...")
     backend.start()
 
+    await backend.booted.acquire()
+    logger.info("Startup complete")
+
 
 @app.on_event("shutdown")
 async def shutdown_event():
     logger.info("Shutting down...")
     backend.teardown_requested = True
-    backend.join()
     logger.info("Shutdown complete")
 
 
