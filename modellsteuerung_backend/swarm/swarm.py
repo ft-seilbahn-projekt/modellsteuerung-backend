@@ -47,7 +47,8 @@ class FtSwarm:
             message = self.ser.read_until(serial.LF)
             try:
                 self.logger.debug("- " + message.decode("UTF-8").removesuffix("\r\n"))
-                if ">>>" in message.decode("UTF-8").removesuffix("\r\n"): break
+                if ">>>" in message.decode("UTF-8").removesuffix("\r\n"):
+                    break
             except:
                 pass
         self.ser.read_all()
@@ -61,11 +62,12 @@ class FtSwarm:
         self.lock.release()
         return self.line
 
-    async def get_obj(self, typeclass, name):
+    async def get_obj(self, typeclass, *args):
+        name = args[0]
         if name in self.objects.keys():
             return self.objects[name]
         else:
-            obj = typeclass(self, name)
+            obj = typeclass(self, *args)
             await obj.postinit()
             self.objects[name] = obj
             return obj
@@ -87,6 +89,9 @@ class FtSwarm:
 
     async def get_lamp(self, name):
         return await self.get_obj(FtSwarmLamp, name)
+
+    async def get_analogin(self, name, threshold):
+        return await self.get_obj(FtSwarmAnalogIn, name, threshold)
 
     async def inputloop(self):
         while True:
@@ -146,6 +151,30 @@ class FtSwarmSwitch:
 
     async def postinit(self):
         await self.swarm.system("sub digital " + self.name)
+
+
+class FtSwarmAnalogIn:
+    def __init__(self, swarm: FtSwarm, name, threshold=1) -> None:
+        self.swarm = swarm
+        self.name = name
+        self.value = 0
+        self.events = []
+        self.threshold = threshold
+
+    async def handle_input(self, inp):
+        self.value = int(inp)
+        for event in self.events:
+            event.set()
+
+    async def wait_on(self, value, comparator=lambda x, y: x == y):
+        ev = asyncio.Event()
+        self.events.append(ev)
+        while not comparator(self.value, value):
+            await ev.wait()
+        self.events.remove(ev)
+
+    async def postinit(self):
+        await self.swarm.system(f"sub analog {self.threshold} {self.name}")
 
 
 class FtSwarmButton(FtSwarmSwitch):

@@ -1,3 +1,10 @@
+import dotenv
+from starlette.middleware.cors import CORSMiddleware
+
+from .state import poti_state
+
+dotenv.load_dotenv()
+
 import subprocess
 import time
 
@@ -7,6 +14,16 @@ from .logger import get_logger
 from .swarm import backend
 
 app = FastAPI()
+
+# CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 logger = get_logger(__name__)
 
 
@@ -14,8 +31,6 @@ logger = get_logger(__name__)
 async def startup_event():
     logger.info("Starting up...")
     backend.start()
-
-    await backend.booted.acquire()
     logger.info("Startup complete")
 
 
@@ -43,4 +58,11 @@ def read_root():
             "/docs",
             "/redoc",
         ],
+    }
+
+
+@app.get("/poti")
+def read_poti():
+    return {
+        "poti": poti_state()
     }
