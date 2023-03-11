@@ -1,7 +1,12 @@
+from dataclasses import dataclass
+
 import dotenv
+
+# This a dependency of fastapi and is installed by pip
+# noinspection PyPackageRequirements
 from starlette.middleware.cors import CORSMiddleware
 
-from .state import poti_state
+from .routes import setup_routes
 
 dotenv.load_dotenv()
 
@@ -11,9 +16,13 @@ import time
 from fastapi import FastAPI
 
 from .logger import get_logger
-from .swarm import backend
+from .hardware import backend
 
-app = FastAPI()
+app = FastAPI(
+    title="Modellsteuerung Backend",
+    description="Backend for the ft.seilbahn-projekt",
+    version="0.0.1"
+)
 
 # CORS
 app.add_middleware(
@@ -41,28 +50,37 @@ async def shutdown_event():
     logger.info("Shutdown complete")
 
 
-@app.get("/")
-def read_root():
+@dataclass
+class Info:
+    project: str
+    version: str
+    description: str
+    author: str
+    contact: str
+    license: str
+    time: float
+    commit: str
+    docs: list[str]
+
+
+@app.get("/", summary="Get information about the backend")
+def read_root() -> Info:
     git_commit = subprocess.check_output(["git", "rev-parse", "HEAD"]).decode("utf-8").strip()
 
-    return {
-        "project": "modellsteuerung_backend",
-        "version": "0.0.1",
-        "description": "Backend for the ft-seilbahn-project",
-        "author": "ft-seilbahn-project",
-        "contact": "christian.bergschneider@gmx.de",
-        "license": "MIT",
-        "time": time.time(),
-        "commit": git_commit,
-        "docs": [
+    return Info(
+        project="modellsteuerung_backend",
+        version="0.0.1",
+        description="Backend for the ft-seilbahn-project",
+        author="ft-seilbahn-project",
+        contact="christian.bergschneider@gmx.de",
+        license="MIT",
+        time=time.time(),
+        commit=git_commit,
+        docs=[
             "/docs",
             "/redoc",
         ],
-    }
+    )
 
 
-@app.get("/poti")
-def read_poti():
-    return {
-        "poti": poti_state()
-    }
+setup_routes(app)

@@ -46,7 +46,7 @@ class FtSwarm:
         while True:
             message = self.ser.read_until(serial.LF)
             try:
-                self.logger.debug("- " + message.decode("UTF-8").removesuffix("\r\n"))
+                self.logger.debug("- " + message.decode("UTF-8").removesuffix("\r").removesuffix("\n"))
                 if ">>>" in message.decode("UTF-8").removesuffix("\r\n"):
                     break
             except:

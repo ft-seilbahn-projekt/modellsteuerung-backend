@@ -2,9 +2,9 @@ import asyncio
 import os
 from threading import Thread
 
+from .desk import desk
 from .swarm import FtSwarm, FtSwarmAnalogIn
 from ..logger import get_logger
-from ..state import set_poti_state
 
 
 class SerialPortFinder:
@@ -34,18 +34,28 @@ class SwarmBackend(Thread):
     async def async_run(self):
         finder = SerialPortFinder()
         self.swarm = FtSwarm(finder.find(), True)  # True for debug comms mode
-        # Init the swarm
+        # Init the hardware
         self.booted.release()
         await asyncio.gather(self.loop(), self.swarm.inputloop())
 
     async def loop(self):
-        # Init the swarm
+        # Init the hardware
         self.logger.debug("Swarm Backend is running")
-        analog_in: FtSwarmAnalogIn = await self.swarm.get_analogin("endstoplower", 20)
 
+        mods = [
+            desk
+        ]
+
+        for mod in mods:
+            await mod.register(self.swarm)
+
+        tick_time = 0.1
         while not self.teardown_requested:
-            set_poti_state(analog_in.value)
-            await asyncio.sleep(1)
+            tick_start = asyncio.get_event_loop().time()
+            for mod in mods:
+                await mod.process()
+            tick_end = asyncio.get_event_loop().time()
+            await asyncio.sleep(max(0, tick_time - (tick_end - tick_start)))
 
         self.logger.debug("Swarm Backend is shutting down")
 
