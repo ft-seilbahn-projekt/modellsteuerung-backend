@@ -1,0 +1,17 @@
+{
+  "mocked_sets": [
+    "desk1",
+    "desk2",
+    "desk3",
+    "desk4"
+  ],
+  "objects": {
+    "deskonoff": {
+      "type": "digital",
+      "value": 0,
+      "sets": [
+        "desk3"
+      ]
+    }
+  }
+}

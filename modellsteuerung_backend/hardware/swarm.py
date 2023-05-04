@@ -3,6 +3,7 @@ import logging
 
 import serial
 
+from .mock import Mocks
 from ..logger import get_logger
 
 
@@ -33,6 +34,7 @@ class FtSwarm:
         self.line = ""
         self.debug = dbg
         self.logger = get_logger(__name__)
+        self.mock = Mocks()
         self.logger.info("Trying to reboot")
 
         self.ser.write("res\r\n".encode())
@@ -57,6 +59,7 @@ class FtSwarm:
     async def system(self, promt):
         await self.lock.acquire()
         self.ser.write(f"{promt}\r\n".encode())
+        print(f">{promt}\r\n")
         await self.oninput.wait()
         self.oninput.clear()
         self.lock.release()
@@ -67,9 +70,15 @@ class FtSwarm:
         if name in self.objects.keys():
             return self.objects[name]
         else:
+            if await self.mock.is_mocked(name):
+                typeclass = self.mock.get_mock_class(name)
+
             obj = typeclass(self, *args)
             await obj.postinit()
             self.objects[name] = obj
+
+            if await self.mock.is_mocked(name):
+                self.mock.register_mock(name, obj)
             return obj
 
     async def get_switch(self, name):
@@ -95,6 +104,7 @@ class FtSwarm:
 
     async def inputloop(self):
         while True:
+            await self.mock.update()
             await asyncio.sleep(0.025)
             if self.ser.in_waiting > 0:
                 line = self.ser.read_until().decode("utf-8")
@@ -137,6 +147,7 @@ class FtSwarmSwitch:
         self.name = name
         self.state = False
         self.events = []
+        self.flank_state = False
 
     async def wait(self):
         ev = asyncio.Event()
@@ -148,6 +159,15 @@ class FtSwarmSwitch:
         self.state = False if inp == "0" else True
         for event in self.events:
             event.set()
+
+    def get_flank(self):
+        """
+        Returns the flank of the switch
+        """
+        if self.flank_state != self.state:
+            self.flank_state = self.state
+            return self.state
+        return False
 
     async def postinit(self):
         await self.swarm.system("sub digital " + self.name)

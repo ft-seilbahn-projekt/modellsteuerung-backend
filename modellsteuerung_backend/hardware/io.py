@@ -1,3 +1,2 @@
 class Io:
-    SPEED_KNOB = "deskspeed"
-    TEST_DEVICE = "endstoplower"
+    DESK_ON_OFF = "deskonoff"
