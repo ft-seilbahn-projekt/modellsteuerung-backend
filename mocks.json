@@ -6,11 +6,123 @@
     "desk4"
   ],
   "objects": {
+    "deskhlt": {
+      "type": "digital",
+      "value": 1,
+      "sets": [
+        "desk1"
+      ]
+    },
+    "deskemerg": {
+      "type": "digital",
+      "value": 1,
+      "sets": [
+        "desk1"
+      ]
+    },
+    "deskemergsb": {
+      "type": "digital",
+      "value": 1,
+      "sets": [
+        "desk1"
+      ]
+    },
+    "deskspd1": {
+      "type": "digital",
+      "value": 0,
+      "sets": [
+        "desk1"
+      ]
+    },
+    "deskspd2": {
+      "type": "digital",
+      "value": 0,
+      "sets": [
+        "desk1"
+      ]
+    },
+    "deskspd3": {
+      "type": "digital",
+      "value": 0,
+      "sets": [
+        "desk1"
+      ]
+    },
+    "deskcnfop": {
+      "type": "digital",
+      "value": 0,
+      "sets": [
+        "desk2"
+      ]
+    },
+    "deskcnfsys": {
+      "type": "digital",
+      "value": 0,
+      "sets": [
+        "desk2"
+      ]
+    },
+    "desksig": {
+      "type": "digital",
+      "value": 0,
+      "sets": [
+        "desk2"
+      ]
+    },
+    "deskcis": {
+      "type": "digital",
+      "value": 0,
+      "sets": [
+        "desk2"
+      ]
+    },
+    "deskdist": {
+      "type": "digital",
+      "value": 0,
+      "sets": [
+        "desk3"
+      ]
+    },
     "deskonoff": {
       "type": "digital",
       "value": 0,
       "sets": [
         "desk3"
+      ]
+    },
+    "deskocc": {
+      "type": "digital",
+      "value": 0,
+      "sets": [
+        "desk3"
+      ]
+    },
+    "deskpassenger": {
+      "type": "digital",
+      "value": 0,
+      "sets": [
+        "desk3"
+      ]
+    },
+    "deskservice": {
+      "type": "digital",
+      "value": 0,
+      "sets": [
+        "desk3"
+      ]
+    },
+    "deskfw": {
+      "type": "digital",
+      "value": 0,
+      "sets": [
+        "desk4"
+      ]
+    },
+    "deskbw": {
+      "type": "digital",
+      "value": 0,
+      "sets": [
+        "desk4"
       ]
     }
   }
