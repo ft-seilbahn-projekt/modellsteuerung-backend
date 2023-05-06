@@ -1,7 +1,6 @@
 import json
 
 from statemachine import StateMachine, State
-from statemachine.contrib.diagram import DotGraphMachine
 from dataclasses import dataclass
 
 
@@ -60,6 +59,7 @@ class Controller(StateMachine):
     # transitions
     transition_activate = state_deactivated.to(state_off)
     transition_all_clear = state_fatal.to(state_off)
+    transition_passenger = state_service.to(state_off)
 
     # events
     event_fatal = state_deactivated.to(state_fatal_lock) | \
@@ -97,7 +97,3 @@ class Controller(StateMachine):
 
 
 controller = Controller()
-
-graph = DotGraphMachine(controller)
-dot = graph()
-dot.write_png('controller_state.png')

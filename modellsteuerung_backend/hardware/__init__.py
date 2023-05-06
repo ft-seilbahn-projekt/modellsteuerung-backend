@@ -5,6 +5,7 @@ from threading import Thread
 from .desk import desk
 from .swarm import FtSwarm, FtSwarmAnalogIn
 from ..logger import get_logger
+from ..state.notifications import notification_modifier
 
 
 class SerialPortFinder:
@@ -43,7 +44,8 @@ class SwarmBackend(Thread):
         self.logger.debug("Swarm Backend is running")
 
         mods = [
-            desk
+            desk,
+            notification_modifier
         ]
 
         for mod in mods:

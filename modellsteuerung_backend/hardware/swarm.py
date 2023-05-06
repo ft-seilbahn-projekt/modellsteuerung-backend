@@ -147,7 +147,7 @@ class FtSwarmSwitch:
         self.name = name
         self.state = False
         self.events = []
-        self.flank_state = False
+        self.flank_states = {}
 
     async def wait(self):
         ev = asyncio.Event()
@@ -160,13 +160,16 @@ class FtSwarmSwitch:
         for event in self.events:
             event.set()
 
-    def get_flank(self):
+    def get_flank(self, flank_id=None, negate=False):
         """
         Returns the flank of the switch
         """
-        if self.flank_state != self.state:
-            self.flank_state = self.state
-            return self.state
+        if flank_id not in self.flank_states.keys():
+            self.flank_states[flank_id] = False
+
+        if self.flank_states[flank_id] != self.state:
+            self.flank_states[flank_id] = self.state
+            return self.state ^ negate
         return False
 
     async def postinit(self):

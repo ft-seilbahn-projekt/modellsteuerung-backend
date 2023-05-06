@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from modellsteuerung_backend.hardware.swarm import FtSwarm
 
 
-class HardwareMod(ABC):
+class Modifier(ABC):
     @abstractmethod
     async def register(self, swarm: FtSwarm):
         pass
