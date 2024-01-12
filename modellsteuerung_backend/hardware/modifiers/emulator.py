@@ -1,9 +1,8 @@
 from swarm import FtSwarm, FtSwarmPixel
 
-from modellsteuerung_backend.api.grpc.grpcdefs_pb2 import Speed
 from modellsteuerung_backend.hardware.modifier import Modifier
 from modellsteuerung_backend.state.controller_state import use_state
-from modellsteuerung_backend.state.drivectrlstate import drive_ctrl_state
+from modellsteuerung_backend.state.drivectrlstate import drive_ctrl_state, Speed
 from modellsteuerung_backend.utils import is_emulated, Level
 
 

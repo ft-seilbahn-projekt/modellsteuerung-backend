@@ -93,3 +93,59 @@ class NotificationList(_message.Message):
     NOTIFICATIONS_FIELD_NUMBER: _ClassVar[int]
     notifications: _containers.RepeatedCompositeFieldContainer[Notification]
     def __init__(self, notifications: _Optional[_Iterable[_Union[Notification, _Mapping]]] = ...) -> None: ...
+
+class NotificationIdentifier(_message.Message):
+    __slots__ = ("id",)
+    ID_FIELD_NUMBER: _ClassVar[int]
+    id: int
+    def __init__(self, id: _Optional[int] = ...) -> None: ...
+
+class KeyPair(_message.Message):
+    __slots__ = ("id", "hmac", "username")
+    ID_FIELD_NUMBER: _ClassVar[int]
+    HMAC_FIELD_NUMBER: _ClassVar[int]
+    USERNAME_FIELD_NUMBER: _ClassVar[int]
+    id: str
+    hmac: str
+    username: str
+    def __init__(self, id: _Optional[str] = ..., hmac: _Optional[str] = ..., username: _Optional[str] = ...) -> None: ...
+
+class Status(_message.Message):
+    __slots__ = ("value",)
+    VALUE_FIELD_NUMBER: _ClassVar[int]
+    value: bool
+    def __init__(self, value: bool = ...) -> None: ...
+
+class KeyStatus(_message.Message):
+    __slots__ = ("is_pulled", "is_verified", "username")
+    IS_PULLED_FIELD_NUMBER: _ClassVar[int]
+    IS_VERIFIED_FIELD_NUMBER: _ClassVar[int]
+    USERNAME_FIELD_NUMBER: _ClassVar[int]
+    is_pulled: bool
+    is_verified: bool
+    username: str
+    def __init__(self, is_pulled: bool = ..., is_verified: bool = ..., username: _Optional[str] = ...) -> None: ...
+
+class StatsData(_message.Message):
+    __slots__ = ("ntc",)
+    NTC_FIELD_NUMBER: _ClassVar[int]
+    ntc: _containers.RepeatedCompositeFieldContainer[NTCStat]
+    def __init__(self, ntc: _Optional[_Iterable[_Union[NTCStat, _Mapping]]] = ...) -> None: ...
+
+class NTCStat(_message.Message):
+    __slots__ = ("name", "id", "elements")
+    NAME_FIELD_NUMBER: _ClassVar[int]
+    ID_FIELD_NUMBER: _ClassVar[int]
+    ELEMENTS_FIELD_NUMBER: _ClassVar[int]
+    name: str
+    id: str
+    elements: _containers.RepeatedCompositeFieldContainer[NTCStatElement]
+    def __init__(self, name: _Optional[str] = ..., id: _Optional[str] = ..., elements: _Optional[_Iterable[_Union[NTCStatElement, _Mapping]]] = ...) -> None: ...
+
+class NTCStatElement(_message.Message):
+    __slots__ = ("time", "degrees")
+    TIME_FIELD_NUMBER: _ClassVar[int]
+    DEGREES_FIELD_NUMBER: _ClassVar[int]
+    time: float
+    degrees: float
+    def __init__(self, time: _Optional[float] = ..., degrees: _Optional[float] = ...) -> None: ...

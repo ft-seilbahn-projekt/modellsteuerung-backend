@@ -72,22 +72,22 @@ class DoppelmayrDesk(Modifier):
         state_2 = await self._in_desk_speed_dial_2.get_state()
         state_3 = await self._in_desk_speed_dial_3.get_state()
 
-        if not state_1 and not state_2 and not state_3:
+        if not state_1 and not state_2 and not state_3 and not state.is_locked:
             self.speed_dial = Speed.STOP
             try_event(controller.event_stop)
-        elif state_1 and not state_2 and not state_3:
+        elif state_1 and not state_2 and not state_3 and not state.is_locked:
             self.speed_dial = Speed.SLOW
-        elif not state_1 and state_2 and not state_3:
+        elif not state_1 and state_2 and not state_3 and not state.is_locked:
             self.speed_dial = Speed.MEDIUM
-        elif not state_1 and not state_2 and state_3:
+        elif not state_1 and not state_2 and state_3 and not state.is_locked:
             self.speed_dial = Speed.FAST
 
-        if await self._in_desk_forwards.get_state():
+        if await self._in_desk_forwards.get_state() and not state.is_locked:
             self.direction = Direction.FORWARDS
-        elif await self._in_desk_backwards.get_state():
+        elif await self._in_desk_backwards.get_state() and not state.is_locked:
             self.direction = Direction.BACKWARDS
 
-        if await self._in_desk_forwards.get_state() and await self._in_desk_backwards.get_state():
+        if await self._in_desk_forwards.get_state() and await self._in_desk_backwards.get_state() and not state.is_locked:
             try_event(controller.event_stop)
 
         if await self._in_desk_occupied.get_flank():

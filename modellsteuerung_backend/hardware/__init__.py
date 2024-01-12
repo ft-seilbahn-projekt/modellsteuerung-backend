@@ -5,10 +5,12 @@ from threading import Thread
 from swarm import FtSwarm
 
 from modellsteuerung_backend.hardware.modifiers.desk import desk
+from .modifiers.call import call
 from .modifiers.emergency import emergency
 from .modifiers.emulator import emulator
 from .modifiers.key import key
 from .modifiers.leds import leds
+from .modifiers.sense import ntc
 from ..logger import get_logger
 from ..state.notifications import notification_modifier
 
@@ -53,14 +55,18 @@ class SwarmBackend(Thread):
             emergency,
             emulator,
             key,
+            call,
+            ntc,
             notification_modifier,
         ]
 
         for mod in mods:
+            self.logger.debug(f"Registering {mod.__class__.__name__}")
             await mod.register(self.swarm)
 
         while not self.teardown_requested:
             await asyncio.gather(*[mod.process() for mod in mods])
+            await asyncio.sleep(0.01)
 
         self.logger.debug("Swarm Backend is shutting down")
 

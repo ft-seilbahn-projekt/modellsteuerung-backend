@@ -14,6 +14,7 @@ from statemachine.exceptions import TransitionNotAllowed
 
 
 class ErrorNr(str, Enum):
+    EXTRA_KEY_REMOVED = "SKR-E"
     LOCKDOWN_UNKNOWN = "LU"
     DOPPELMAYR_EMERGENCY_STOP = "DES"
 
@@ -68,6 +69,17 @@ class Notifications:
 
     def has_of_level(self, level: Level):
         return any(notification.level == level for notification in self._notifications)
+
+    def add_notification_if_none_with_nr(self, notification: Notification):
+        errno = notification.errornr
+        if errno is None:
+            return self.add_notification(notification)
+
+        for n in self._notifications:
+            if n.errornr == errno:
+                return n
+
+        return self.add_notification(notification)
 
     def can_unlock(self):
         return not self.has_of_level(Level.FATAL)

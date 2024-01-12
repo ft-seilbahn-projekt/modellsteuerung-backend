@@ -4,6 +4,10 @@ service Backend {
   rpc info (Void) returns (Info) {}
   rpc state (Void) returns (State) {}
   rpc notifications (Void) returns (NotificationList) {}
+  rpc remove_notification (NotificationIdentifier) returns (Void) {}
+  rpc key_unlock (KeyPair) returns (Status) {}
+  rpc key_status (Void) returns (KeyStatus) {}
+  rpc stats_data (Void) returns (StatsData) {}
 }
 
 message Void {}
@@ -55,4 +59,39 @@ message Notification {
 
 message NotificationList {
   repeated Notification notifications = 1;
+}
+
+message NotificationIdentifier {
+  int32 id = 1;
+}
+
+message KeyPair {
+  string id = 1;
+  string hmac = 2;
+  string username = 3;
+}
+
+message Status {
+  bool value = 1;
+}
+
+message KeyStatus {
+  bool is_pulled = 1;
+  bool is_verified = 2;
+  string username = 3;
+}
+
+message StatsData {
+  repeated NTCStat ntc = 1;
+}
+
+message NTCStat {
+  string name = 1;
+  string id = 2;
+  repeated NTCStatElement elements = 3;
+}
+
+message NTCStatElement {
+  float time = 1;
+  float degrees = 2;
 }

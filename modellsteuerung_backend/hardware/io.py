@@ -16,9 +16,12 @@ class Input:
     DESK_START = "deskgo"
     DESK_SYSTEM_DISABLE = "deskkom1"
     DESK_SYSTEM_ENABLE = "deskkom2"
+    DESK_KEY_SWITCH = "deskkey"
+    DESK_CALL = "deskcall"
 
 
 class Output:
     DESK_ON_OFF = "odeskon"
     DESK_START = "odeskgo"
     DESK_CONFIRM_OPERATION = "odeskcnfop"
+    KEY_SWITCH = "okey"

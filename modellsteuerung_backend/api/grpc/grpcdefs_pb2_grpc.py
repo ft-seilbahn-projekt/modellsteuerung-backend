@@ -29,6 +29,26 @@ class BackendStub(object):
                 request_serializer=modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.Void.SerializeToString,
                 response_deserializer=modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.NotificationList.FromString,
                 )
+        self.remove_notification = channel.unary_unary(
+                '/Backend/remove_notification',
+                request_serializer=modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.NotificationIdentifier.SerializeToString,
+                response_deserializer=modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.Void.FromString,
+                )
+        self.key_unlock = channel.unary_unary(
+                '/Backend/key_unlock',
+                request_serializer=modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.KeyPair.SerializeToString,
+                response_deserializer=modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.Status.FromString,
+                )
+        self.key_status = channel.unary_unary(
+                '/Backend/key_status',
+                request_serializer=modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.Void.SerializeToString,
+                response_deserializer=modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.KeyStatus.FromString,
+                )
+        self.stats_data = channel.unary_unary(
+                '/Backend/stats_data',
+                request_serializer=modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.Void.SerializeToString,
+                response_deserializer=modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.StatsData.FromString,
+                )
 
 
 class BackendServicer(object):
@@ -52,6 +72,30 @@ class BackendServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def remove_notification(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def key_unlock(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def key_status(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def stats_data(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_BackendServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -69,6 +113,26 @@ def add_BackendServicer_to_server(servicer, server):
                     servicer.notifications,
                     request_deserializer=modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.Void.FromString,
                     response_serializer=modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.NotificationList.SerializeToString,
+            ),
+            'remove_notification': grpc.unary_unary_rpc_method_handler(
+                    servicer.remove_notification,
+                    request_deserializer=modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.NotificationIdentifier.FromString,
+                    response_serializer=modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.Void.SerializeToString,
+            ),
+            'key_unlock': grpc.unary_unary_rpc_method_handler(
+                    servicer.key_unlock,
+                    request_deserializer=modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.KeyPair.FromString,
+                    response_serializer=modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.Status.SerializeToString,
+            ),
+            'key_status': grpc.unary_unary_rpc_method_handler(
+                    servicer.key_status,
+                    request_deserializer=modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.Void.FromString,
+                    response_serializer=modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.KeyStatus.SerializeToString,
+            ),
+            'stats_data': grpc.unary_unary_rpc_method_handler(
+                    servicer.stats_data,
+                    request_deserializer=modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.Void.FromString,
+                    response_serializer=modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.StatsData.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -128,5 +192,73 @@ class Backend(object):
         return grpc.experimental.unary_unary(request, target, '/Backend/notifications',
             modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.Void.SerializeToString,
             modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.NotificationList.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def remove_notification(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Backend/remove_notification',
+            modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.NotificationIdentifier.SerializeToString,
+            modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.Void.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def key_unlock(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Backend/key_unlock',
+            modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.KeyPair.SerializeToString,
+            modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.Status.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def key_status(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Backend/key_status',
+            modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.Void.SerializeToString,
+            modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.KeyStatus.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def stats_data(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Backend/stats_data',
+            modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.Void.SerializeToString,
+            modellsteuerung__backend_dot_api_dot_grpc_dot_grpcdefs__pb2.StatsData.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

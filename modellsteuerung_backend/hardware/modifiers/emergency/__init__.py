@@ -58,10 +58,17 @@ class Emergency(Modifier):
 
     async def process_lockdown(self):
         # can unlock?
-        if (
-                not await self.check_all()
-                and notifications.can_unlock()
-        ):
+        if notifications.can_unlock():
+            prefab = await self.first_prefab()
+            if prefab is not None:
+                await self.lockdown(
+                    title=prefab.title,
+                    description=prefab.description,
+                    location=prefab.location,
+                    errornr=prefab.errornr,
+                    possible_sources=prefab.possible_sources
+                )
+                return
             if await self._in_confirm_operation.get_flank():
                 try_event(controller.transition_all_clear)
             elif not use_state().is_locked:

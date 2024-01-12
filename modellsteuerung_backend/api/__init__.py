@@ -3,7 +3,8 @@ import time
 
 from .grpc import grpcdefs_pb2_grpc, grpcdefs_pb2
 from modellsteuerung_backend.state.controller_state import use_state, use_state_machine
-from ..hardware import desk
+from .grpc.grpcdefs_pb2 import NTCStat
+from ..hardware import desk, key, ntc
 from ..state.drivectrlstate import Speed
 from ..state.notifications import notifications
 from ..utils import Level
@@ -77,3 +78,31 @@ class Backend(grpcdefs_pb2_grpc.BackendServicer):
             ))
 
         return grpcdefs_pb2.NotificationList(notifications=n)
+
+    async def remove_notification(self, request, context):
+        notifications.remove_notification_by_id(request.id)
+        return grpcdefs_pb2.Void()
+
+    async def key_unlock(self, request: grpcdefs_pb2.KeyPair, context):
+        result = key.unlock_key_for_user(request.username, request.id, request.hmac)
+        return grpcdefs_pb2.Status(value=result)
+
+    async def key_status(self, request, context):
+        return grpcdefs_pb2.KeyStatus(
+            is_pulled=key.last_state,
+            is_verified=key.unlocked or time.time() - key.can_unlock_start < 30,
+            username=key.current_key_user or "",
+        )
+
+    async def stats_data(self, request, context) -> grpcdefs_pb2.StatsData:
+        stats: list[NTCStat] = []
+
+        for ntc_id in ntc.get_ids():
+            name: str = ntc.get_name(ntc_id)
+            data: list[grpcdefs_pb2.NTCStatElement] = [
+                grpcdefs_pb2.NTCStatElement(time=float(x.split(":")[0]), degrees=float(x.split(":")[1]))
+                for x in ntc.get_data(ntc_id)
+            ]
+            stats.append(NTCStat(id=ntc_id, name=name, elements=data))
+
+        return grpcdefs_pb2.StatsData(ntc=stats)
