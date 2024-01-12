@@ -2,9 +2,22 @@ syntax = "proto3";
 
 service Backend {
   rpc info (Void) returns (Info) {}
+  rpc state (Void) returns (State) {}
+  rpc notifications (Void) returns (NotificationList) {}
+  rpc remove_notification (NotificationIdentifier) returns (Void) {}
+  rpc key_unlock (KeyPair) returns (Status) {}
+  rpc key_status (Void) returns (KeyStatus) {}
+  rpc stats_data (Void) returns (StatsData) {}
 }
 
 message Void {}
+
+enum Speed {
+  STOP = 0;
+  SLOW = 1;
+  MEDIUM = 2;
+  FAST = 3;
+}
 
 message Info {
   string project = 1;
@@ -15,4 +28,70 @@ message Info {
   string license = 6;
   float time = 7;
   string commit = 8;
+}
+
+message State {
+  string name = 1;
+  bool is_locked = 2;
+  bool can_drive_auto = 3;
+  bool can_drive_manual = 4;
+  bool is_fatal = 5;
+  bool is_warn = 6;
+  Speed speed = 7;
+}
+
+enum Level {
+  INFO = 0;
+  WARNING = 1;
+  FATAL = 2;
+}
+
+message Notification {
+  int32 id = 1;
+  Level level = 2;
+  string title = 3;
+  string description = 4;
+  string location = 5;
+  float start_time = 6;
+  string errorrnr = 7;
+  repeated string possible_sources = 8;
+}
+
+message NotificationList {
+  repeated Notification notifications = 1;
+}
+
+message NotificationIdentifier {
+  int32 id = 1;
+}
+
+message KeyPair {
+  string id = 1;
+  string hmac = 2;
+  string username = 3;
+}
+
+message Status {
+  bool value = 1;
+}
+
+message KeyStatus {
+  bool is_pulled = 1;
+  bool is_verified = 2;
+  string username = 3;
+}
+
+message StatsData {
+  repeated NTCStat ntc = 1;
+}
+
+message NTCStat {
+  string name = 1;
+  string id = 2;
+  repeated NTCStatElement elements = 3;
+}
+
+message NTCStatElement {
+  float time = 1;
+  float degrees = 2;
 }

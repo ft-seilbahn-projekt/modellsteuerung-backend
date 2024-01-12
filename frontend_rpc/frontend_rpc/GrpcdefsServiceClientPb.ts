@@ -82,5 +82,263 @@ export class BackendClient {
     this.methodDescriptorinfo);
   }
 
+  methodDescriptorstate = new grpcWeb.MethodDescriptor(
+    '/Backend/state',
+    grpcWeb.MethodType.UNARY,
+    frontend_rpc_grpcdefs_pb.Void,
+    frontend_rpc_grpcdefs_pb.State,
+    (request: frontend_rpc_grpcdefs_pb.Void) => {
+      return request.serializeBinary();
+    },
+    frontend_rpc_grpcdefs_pb.State.deserializeBinary
+  );
+
+  state(
+    request: frontend_rpc_grpcdefs_pb.Void,
+    metadata: grpcWeb.Metadata | null): Promise<frontend_rpc_grpcdefs_pb.State>;
+
+  state(
+    request: frontend_rpc_grpcdefs_pb.Void,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: frontend_rpc_grpcdefs_pb.State) => void): grpcWeb.ClientReadableStream<frontend_rpc_grpcdefs_pb.State>;
+
+  state(
+    request: frontend_rpc_grpcdefs_pb.Void,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: frontend_rpc_grpcdefs_pb.State) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Backend/state',
+        request,
+        metadata || {},
+        this.methodDescriptorstate,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Backend/state',
+    request,
+    metadata || {},
+    this.methodDescriptorstate);
+  }
+
+  methodDescriptornotifications = new grpcWeb.MethodDescriptor(
+    '/Backend/notifications',
+    grpcWeb.MethodType.UNARY,
+    frontend_rpc_grpcdefs_pb.Void,
+    frontend_rpc_grpcdefs_pb.NotificationList,
+    (request: frontend_rpc_grpcdefs_pb.Void) => {
+      return request.serializeBinary();
+    },
+    frontend_rpc_grpcdefs_pb.NotificationList.deserializeBinary
+  );
+
+  notifications(
+    request: frontend_rpc_grpcdefs_pb.Void,
+    metadata: grpcWeb.Metadata | null): Promise<frontend_rpc_grpcdefs_pb.NotificationList>;
+
+  notifications(
+    request: frontend_rpc_grpcdefs_pb.Void,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: frontend_rpc_grpcdefs_pb.NotificationList) => void): grpcWeb.ClientReadableStream<frontend_rpc_grpcdefs_pb.NotificationList>;
+
+  notifications(
+    request: frontend_rpc_grpcdefs_pb.Void,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: frontend_rpc_grpcdefs_pb.NotificationList) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Backend/notifications',
+        request,
+        metadata || {},
+        this.methodDescriptornotifications,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Backend/notifications',
+    request,
+    metadata || {},
+    this.methodDescriptornotifications);
+  }
+
+  methodDescriptorremove_notification = new grpcWeb.MethodDescriptor(
+    '/Backend/remove_notification',
+    grpcWeb.MethodType.UNARY,
+    frontend_rpc_grpcdefs_pb.NotificationIdentifier,
+    frontend_rpc_grpcdefs_pb.Void,
+    (request: frontend_rpc_grpcdefs_pb.NotificationIdentifier) => {
+      return request.serializeBinary();
+    },
+    frontend_rpc_grpcdefs_pb.Void.deserializeBinary
+  );
+
+  remove_notification(
+    request: frontend_rpc_grpcdefs_pb.NotificationIdentifier,
+    metadata: grpcWeb.Metadata | null): Promise<frontend_rpc_grpcdefs_pb.Void>;
+
+  remove_notification(
+    request: frontend_rpc_grpcdefs_pb.NotificationIdentifier,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: frontend_rpc_grpcdefs_pb.Void) => void): grpcWeb.ClientReadableStream<frontend_rpc_grpcdefs_pb.Void>;
+
+  remove_notification(
+    request: frontend_rpc_grpcdefs_pb.NotificationIdentifier,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: frontend_rpc_grpcdefs_pb.Void) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Backend/remove_notification',
+        request,
+        metadata || {},
+        this.methodDescriptorremove_notification,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Backend/remove_notification',
+    request,
+    metadata || {},
+    this.methodDescriptorremove_notification);
+  }
+
+  methodDescriptorkey_unlock = new grpcWeb.MethodDescriptor(
+    '/Backend/key_unlock',
+    grpcWeb.MethodType.UNARY,
+    frontend_rpc_grpcdefs_pb.KeyPair,
+    frontend_rpc_grpcdefs_pb.Status,
+    (request: frontend_rpc_grpcdefs_pb.KeyPair) => {
+      return request.serializeBinary();
+    },
+    frontend_rpc_grpcdefs_pb.Status.deserializeBinary
+  );
+
+  key_unlock(
+    request: frontend_rpc_grpcdefs_pb.KeyPair,
+    metadata: grpcWeb.Metadata | null): Promise<frontend_rpc_grpcdefs_pb.Status>;
+
+  key_unlock(
+    request: frontend_rpc_grpcdefs_pb.KeyPair,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: frontend_rpc_grpcdefs_pb.Status) => void): grpcWeb.ClientReadableStream<frontend_rpc_grpcdefs_pb.Status>;
+
+  key_unlock(
+    request: frontend_rpc_grpcdefs_pb.KeyPair,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: frontend_rpc_grpcdefs_pb.Status) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Backend/key_unlock',
+        request,
+        metadata || {},
+        this.methodDescriptorkey_unlock,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Backend/key_unlock',
+    request,
+    metadata || {},
+    this.methodDescriptorkey_unlock);
+  }
+
+  methodDescriptorkey_status = new grpcWeb.MethodDescriptor(
+    '/Backend/key_status',
+    grpcWeb.MethodType.UNARY,
+    frontend_rpc_grpcdefs_pb.Void,
+    frontend_rpc_grpcdefs_pb.KeyStatus,
+    (request: frontend_rpc_grpcdefs_pb.Void) => {
+      return request.serializeBinary();
+    },
+    frontend_rpc_grpcdefs_pb.KeyStatus.deserializeBinary
+  );
+
+  key_status(
+    request: frontend_rpc_grpcdefs_pb.Void,
+    metadata: grpcWeb.Metadata | null): Promise<frontend_rpc_grpcdefs_pb.KeyStatus>;
+
+  key_status(
+    request: frontend_rpc_grpcdefs_pb.Void,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: frontend_rpc_grpcdefs_pb.KeyStatus) => void): grpcWeb.ClientReadableStream<frontend_rpc_grpcdefs_pb.KeyStatus>;
+
+  key_status(
+    request: frontend_rpc_grpcdefs_pb.Void,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: frontend_rpc_grpcdefs_pb.KeyStatus) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Backend/key_status',
+        request,
+        metadata || {},
+        this.methodDescriptorkey_status,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Backend/key_status',
+    request,
+    metadata || {},
+    this.methodDescriptorkey_status);
+  }
+
+  methodDescriptorstats_data = new grpcWeb.MethodDescriptor(
+    '/Backend/stats_data',
+    grpcWeb.MethodType.UNARY,
+    frontend_rpc_grpcdefs_pb.Void,
+    frontend_rpc_grpcdefs_pb.StatsData,
+    (request: frontend_rpc_grpcdefs_pb.Void) => {
+      return request.serializeBinary();
+    },
+    frontend_rpc_grpcdefs_pb.StatsData.deserializeBinary
+  );
+
+  stats_data(
+    request: frontend_rpc_grpcdefs_pb.Void,
+    metadata: grpcWeb.Metadata | null): Promise<frontend_rpc_grpcdefs_pb.StatsData>;
+
+  stats_data(
+    request: frontend_rpc_grpcdefs_pb.Void,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: frontend_rpc_grpcdefs_pb.StatsData) => void): grpcWeb.ClientReadableStream<frontend_rpc_grpcdefs_pb.StatsData>;
+
+  stats_data(
+    request: frontend_rpc_grpcdefs_pb.Void,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: frontend_rpc_grpcdefs_pb.StatsData) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Backend/stats_data',
+        request,
+        metadata || {},
+        this.methodDescriptorstats_data,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Backend/stats_data',
+    request,
+    metadata || {},
+    this.methodDescriptorstats_data);
+  }
+
 }
 
