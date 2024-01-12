@@ -1,0 +1,45 @@
+{
+  "names": [
+    "ftSwarm4"
+  ],
+  "maxled": 2,
+  "type": "xl",
+  "io": [
+    {
+      "id": "hostname",
+      "value": "nexttopower"
+    },
+    {
+      "id": "A8",
+      "value": "deskkom1"
+    },
+    {
+      "id": "A7",
+      "value": "deskkom2"
+    },
+    {
+      "id": "A6",
+      "value": "deskkey"
+    },
+    {
+      "id": "A5",
+      "value": "spfntc"
+    },
+    {
+      "id": "A4",
+      "value": "m1ntc"
+    },
+    {
+      "id": "A3",
+      "value": "m2ntc"
+    },
+    {
+      "id": "A2",
+      "value": "m3ntc"
+    },
+    {
+      "id": "A1",
+      "value": "lucclamp"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "names": [
+    "ftSwarm2"
+  ],
+  "maxled": 2,
+  "type": "xl",
+  "io": [
+    {
+      "id": "hostname",
+      "value": "kelda"
+    },
+    {
+      "id": "A8",
+      "value": "deskspd1"
+    },
+    {
+      "id": "A7",
+      "value": "deskspd2"
+    },
+    {
+      "id": "A6",
+      "value": "deskspd3"
+    },
+    {
+      "id": "A5",
+      "value": "lubntc"
+    },
+    {
+      "id": "A4",
+      "value": "lufkey"
+    },
+    {
+      "id": "A3",
+      "value": "lubemerg"
+    },
+    {
+      "id": "A2",
+      "value": "lucclampclosed"
+    },
+    {
+      "id": "A1",
+      "value": "spbntc"
+    }
+  ]
+}

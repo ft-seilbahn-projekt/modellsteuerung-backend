@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from enum import Enum
 
-from modellsteuerung_backend.network.drivectl import InboundDriveCtlPacket
+from modellsteuerung_backend.hardware.drivectl import InboundDriveCtlPacket
 from modellsteuerung_backend.utils import Level
 
 
@@ -55,6 +55,8 @@ class InternalDriveCtrlState:
 
     def set_emergency_stop(self, emergency_stop: bool):
         self._emergency_stop = emergency_stop
+        if emergency_stop:
+            self._speed = Speed.STOP
         self.fire()
 
     def get_state(self) -> DriveCtrlState:
@@ -103,8 +105,8 @@ class InternalDriveCtrlState:
         return bytes([direction | self._speed])
 
     def fire(self):
-        print(self.serialize())
-        # TODO: Send to actual drive control
+        pass
+        # TODO: Send if changed to actual drive control
 
 
 drive_ctrl_state = InternalDriveCtrlState()

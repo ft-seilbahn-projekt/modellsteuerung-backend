@@ -1,0 +1,49 @@
+
+
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "names": {
+      "type": "array",
+      "items": [
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "maxled": {
+      "type": "integer"
+    },
+    "type": {
+      "type": "string"
+    },
+    "io": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "value"
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "names",
+    "maxled",
+    "type",
+    "io"
+  ]
+}
+

@@ -2,19 +2,25 @@ import asyncio
 import os
 from threading import Thread
 
-from .desk import desk
-from .swarm import FtSwarm, FtSwarmAnalogIn
+from swarm import FtSwarm
+
+from modellsteuerung_backend.hardware.modifiers.desk import desk
+from .modifiers.emergency import emergency
+from .modifiers.emulator import emulator
+from .modifiers.key import key
+from .modifiers.leds import leds
 from ..logger import get_logger
 from ..state.notifications import notification_modifier
 
+from serial.tools.list_ports import comports
 
-class SerialPortFinder:
-    def find(self):
-        env = os.environ.get("SERIAL_PORT")
-        if env:
-            return env
-        else:
-            return input("Please enter the serial port: ")
+
+def find():
+    env = os.environ.get("SERIAL_PORT")
+    if env:
+        return env
+    else:
+        return comports()[0].device
 
 
 class SwarmBackend(Thread):
@@ -33,11 +39,9 @@ class SwarmBackend(Thread):
         asyncio.run(self.async_run())
 
     async def async_run(self):
-        finder = SerialPortFinder()
-        self.swarm = FtSwarm(finder.find(), True)  # True for debug comms mode
-        # Init the hardware
+        self.swarm = FtSwarm(find())
         self.booted.release()
-        await asyncio.gather(self.loop(), self.swarm.inputloop())
+        await self.loop()
 
     async def loop(self):
         # Init the hardware
@@ -45,19 +49,18 @@ class SwarmBackend(Thread):
 
         mods = [
             desk,
-            notification_modifier
+            leds,
+            emergency,
+            emulator,
+            key,
+            notification_modifier,
         ]
 
         for mod in mods:
             await mod.register(self.swarm)
 
-        tick_time = 0.1
         while not self.teardown_requested:
-            tick_start = asyncio.get_event_loop().time()
-            for mod in mods:
-                await mod.process()
-            tick_end = asyncio.get_event_loop().time()
-            await asyncio.sleep(max(0, tick_time - (tick_end - tick_start)))
+            await asyncio.gather(*[mod.process() for mod in mods])
 
         self.logger.debug("Swarm Backend is shutting down")
 

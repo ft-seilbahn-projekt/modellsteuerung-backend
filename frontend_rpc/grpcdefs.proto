@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+service Backend {
+  rpc info (Void) returns (Info) {}
+}
+
+message Void {}
+
+message Info {
+  string project = 1;
+  string version = 2;
+  string description = 3;
+  string author = 4;
+  string contact = 5;
+  string license = 6;
+  float time = 7;
+  string commit = 8;
+}

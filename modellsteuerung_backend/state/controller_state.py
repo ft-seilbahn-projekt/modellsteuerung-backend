@@ -3,6 +3,8 @@ import json
 from statemachine import StateMachine, State
 from dataclasses import dataclass
 
+from modellsteuerung_backend.utils import Level
+
 
 @dataclass
 class ControllerStateValue:
@@ -31,6 +33,14 @@ class ControllerStateValue:
             is_fatal=data['is_fatal'],
             is_warn=data['is_warn']
         )
+
+    def get_level(self) -> Level:
+        if self.is_fatal:
+            return Level.FATAL
+        elif self.is_warn:
+            return Level.WARNING
+        else:
+            return Level.INFO
 
 
 class Controller(StateMachine):
@@ -78,11 +88,13 @@ class Controller(StateMachine):
                  state_drv_info.to(state_drv_info_lock) | \
                  state_drv_warn.to(state_drv_warn_lock) | \
                  state_fatal.to(state_fatal_lock) | \
-                 state_off.to(state_deactivated) | \
-                 state_service_lock.to(state_service) | \
-                 state_drv_info_lock.to(state_drv_info) | \
-                 state_drv_warn_lock.to(state_drv_warn) | \
-                 state_fatal_lock.to(state_fatal)
+                 state_off.to(state_deactivated)
+
+    event_unlock = state_service_lock.to(state_service) | \
+                   state_drv_info_lock.to(state_drv_info) | \
+                   state_drv_warn_lock.to(state_drv_warn) | \
+                   state_fatal_lock.to(state_fatal) | \
+                   state_deactivated.to(state_off)
 
     event_warn = state_drv_info.to(state_drv_warn) | \
                  state_drv_info_lock.to(state_drv_warn_lock)
@@ -97,3 +109,11 @@ class Controller(StateMachine):
 
 
 controller = Controller()
+
+
+def use_state_machine():
+    return controller
+
+
+def use_state() -> ControllerStateValue:
+    return ControllerStateValue.load(controller.current_state_value)

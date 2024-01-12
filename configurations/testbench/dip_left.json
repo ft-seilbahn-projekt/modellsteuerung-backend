@@ -1,0 +1,77 @@
+{
+  "names": [
+    "ftSwarm1"
+  ],
+  "maxled": 2,
+  "type": "xl",
+  "io": [
+    {
+      "id": "hostname",
+      "value": "dipleft"
+    },
+    {
+      "id": "A8",
+      "value": "deskfg"
+    },
+    {
+      "id": "A7",
+      "value": "desksta"
+    },
+    {
+      "id": "A6",
+      "value": "deskon"
+    },
+    {
+      "id": "A5",
+      "value": "deskcall"
+    },
+    {
+      "id": "A4",
+      "value": "deskrw"
+    },
+    {
+      "id": "A3",
+      "value": "deskvw"
+    },
+    {
+      "id": "A2",
+      "value": "cablelocin"
+    },
+    {
+      "id": "A1",
+      "value": "spcwfrwrn"
+    },
+    {
+      "id": "M1",
+      "value": "odeskcnfsys"
+    },
+    {
+      "id": "M2",
+      "value": "odeskcnfop"
+    },
+    {
+      "id": "M3",
+      "value": "odeskgo"
+    },
+    {
+      "id": "M4",
+      "value": "odeskon"
+    },
+    {
+      "id": "M5",
+      "value": "odeskfd"
+    },
+    {
+      "id": "M6",
+      "value": "odesksta"
+    },
+    {
+      "id": "M7",
+      "value": "odeskdir"
+    },
+    {
+      "id": "M8",
+      "value": "odeskserv"
+    }
+  ]
+}
