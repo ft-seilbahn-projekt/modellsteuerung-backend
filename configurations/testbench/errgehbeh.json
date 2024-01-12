@@ -1,0 +1,77 @@
+{
+  "names": [
+    "ftSwarm102"
+  ],
+  "maxled": 18,
+  "type": "rs",
+  "io": [
+    {
+      "id": "A1",
+      "value": "lufntc"
+    },
+    {
+      "id": "LED3",
+      "value": "okey"
+    },
+    {
+      "id": "LED4",
+      "value": "ofirel"
+    },
+    {
+      "id": "LED5",
+      "value": "ounknown2l"
+    },
+    {
+      "id": "LED6",
+      "value": "ounknown3l"
+    },
+    {
+      "id": "LED7",
+      "value": "ocablelocout"
+    },
+    {
+      "id": "LED8",
+      "value": "ofirer"
+    },
+    {
+      "id": "LED9",
+      "value": "ounknown2r"
+    },
+    {
+      "id": "LED10",
+      "value": "ounknown3r"
+    },
+    {
+      "id": "LED11",
+      "value": "ocablelocin"
+    },
+    {
+      "id": "LED12",
+      "value": "osimf"
+    },
+    {
+      "id": "LED13",
+      "value": "osimb"
+    },
+    {
+      "id": "LED14",
+      "value": "osimfl"
+    },
+    {
+      "id": "LED15",
+      "value": "osimn"
+    },
+    {
+      "id": "LED16",
+      "value": "osimfa"
+    },
+    {
+      "id": "LED17",
+      "value": "osimmnot"
+    },
+    {
+      "id": "LED18",
+      "value": "osimlock"
+    }
+  ]
+}

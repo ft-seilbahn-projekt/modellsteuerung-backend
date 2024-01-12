@@ -1,0 +1,69 @@
+{
+  "names": [
+    "ftSwarm180"
+  ],
+  "maxled": 2,
+  "type": "xl",
+  "io": [
+    {
+      "id": "hostname",
+      "value": "dipright"
+    },
+    {
+      "id": "A8",
+      "value": "deskemergsb"
+    },
+    {
+      "id": "A7",
+      "value": "deskemerg"
+    },
+    {
+      "id": "A6",
+      "value": "deskwrn"
+    },
+    {
+      "id": "A5",
+      "value": "deskcis"
+    },
+    {
+      "id": "A4",
+      "value": "deskgo"
+    },
+    {
+      "id": "A3",
+      "value": "deskqs"
+    },
+    {
+      "id": "A2",
+      "value": "deskqb"
+    },
+    {
+      "id": "A1",
+      "value": "deskser"
+    },
+    {
+      "id": "M1",
+      "value": "oemergproblem"
+    },
+    {
+      "id": "M2",
+      "value": "oemergresolve"
+    },
+    {
+      "id": "M3",
+      "value": "om1top"
+    },
+    {
+      "id": "M4",
+      "value": "om2top"
+    },
+    {
+      "id": "M5",
+      "value": "om3top"
+    },
+    {
+      "id": "M6",
+      "value": "om3flight"
+    }
+  ]
+}

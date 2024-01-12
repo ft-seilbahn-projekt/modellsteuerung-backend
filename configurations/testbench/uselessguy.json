@@ -1,0 +1,45 @@
+{
+  "names": [
+    "ftSwarm3"
+  ],
+  "maxled": 2,
+  "type": "xl",
+  "io": [
+    {
+      "id": "hostname",
+      "value": "uselessguy"
+    },
+    {
+      "id": "A8",
+      "value": "deskspdp"
+    },
+    {
+      "id": "A7",
+        "value": "emergi"
+    },
+    {
+      "id": "A6",
+      "value": "cablelocout"
+    },
+    {
+      "id": "A5",
+      "value": "spcclampclosed"
+    },
+    {
+      "id": "A4",
+      "value": "spcwfrend"
+    },
+    {
+      "id": "A3",
+      "value": "spcwbend"
+    },
+    {
+      "id": "A2",
+      "value": "spcwbwrn"
+    },
+    {
+      "id": "A1",
+      "value": "spcclamp"
+    }
+  ]
+}
