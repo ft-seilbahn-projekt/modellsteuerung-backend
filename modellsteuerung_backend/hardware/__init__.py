@@ -55,7 +55,7 @@ class SwarmBackend(Thread):
             #emergency,
             #emulator,
             #key,
-            call,
+            #call,
             #ntc,
             notification_modifier,
         ]
