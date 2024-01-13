@@ -18,7 +18,12 @@ install-yay:
     rm -rf /tmp/yay
 
 install-deps:
-    yay -S --needed python protoc-gen-grpc-web graphviz envoyproxy-bin nodejs
+    yay -S --needed python protoc-gen-grpc-web graphviz envoyproxy-bin nodejs go
+
+install-proxy:
+    rm -rf grpc-proxy
+    git clone https://github.com/mirkolenz/grpc-proxy.git
+    cd grpc-proxy && go build && cd -
 
 proto:
     source .venv/bin/activate && python3 -m grpc_tools.protoc -I. --python_out=. --pyi_out=. --grpc_python_out=. modellsteuerung_backend/api/grpc/*.proto
@@ -33,8 +38,8 @@ proto-js-setup:
     npm init -y
     npm i @grpc/proto-loader
 
-envoy:
-    envoy -c envoy.yaml --log-level debug
+proxy:
+    ./grpc-proxy/grpc-proxy --backend-port 50051 --proxy-port 8081
 
 grpcui:
     grpcui -plaintext localhost:50051

@@ -20,8 +20,8 @@ class NtcSense(Modifier):
         self.logger.info("Registering NTCs")
         for sensor in NTCS:
             # noinspection PyProtectedMember
-            self._ntcs[sensor] = await swarm._get_object(sensor, FtSwarmAnalogInput, True, 1)
-            self._ntc_queue[sensor] = PersistedFiFo(10, "ntc_" + sensor)
+            self._ntcs[sensor] = await swarm._get_object(sensor, FtSwarmAnalogInput, True, 10)
+            self._ntc_queue[sensor] = PersistedFiFo(100, "ntc_" + sensor)
 
     async def process(self):
         if self._last_time_measurement + 60 > time.time():
