@@ -5,7 +5,6 @@ from threading import Thread
 from swarm import FtSwarm
 
 from modellsteuerung_backend.hardware.modifiers.desk import desk
-from .modifiers.call import call
 from .modifiers.emergency import emergency
 from .modifiers.emulator import emulator
 from .modifiers.key import key
