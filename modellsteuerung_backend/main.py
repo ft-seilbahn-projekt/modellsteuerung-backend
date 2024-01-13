@@ -1,12 +1,13 @@
+import asyncio
 import logging
 
 import dotenv
 
+from .api import AioBackend
+
 dotenv.load_dotenv()
 
-from grpc_reflection.v1alpha import reflection
 import atexit
-import grpc.aio
 
 from .logger import get_logger
 from .hardware import backend
@@ -33,19 +34,10 @@ async def main():
     await startup_event()
     atexit.register(shutdown_event)
 
-    server = grpc.aio.server()
+    rest = AioBackend()
+    logger.info("Server started on port 8080")
+    await rest.run("127.0.0.1", 8080)
 
-    from .api.grpc import grpcdefs_pb2_grpc, grpcdefs_pb2
-    from .api import Backend
-    grpcdefs_pb2_grpc.add_BackendServicer_to_server(Backend(), server)
-
-    reflection.enable_server_reflection((
-        grpcdefs_pb2.DESCRIPTOR.services_by_name["Backend"].full_name,
-        reflection.SERVICE_NAME,
-    ), server)
-
-    server.add_insecure_port("[::]:50051")
-    await server.start()
-    logger.info("Server started on port 50051")
-    await server.wait_for_termination()
-
+    # run until ctrl+c
+    while True:
+        await asyncio.sleep(1)

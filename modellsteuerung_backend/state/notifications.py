@@ -17,6 +17,7 @@ class ErrorNr(str, Enum):
     EXTRA_KEY_REMOVED = "SKR-E"
     LOCKDOWN_UNKNOWN = "LU"
     DOPPELMAYR_EMERGENCY_STOP = "DES"
+    WELCOME = "W"
 
 
 def try_event(event_fn):
@@ -37,6 +38,9 @@ class Notification:
     end_time: float = None
     errornr: Union[ErrorNr, None] = None
     possible_sources: Union[list[str], None] = None
+
+    def to_json(self):
+        return self.__dict__
 
 
 class Notifications:
