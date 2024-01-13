@@ -1,0 +1,38 @@
+{
+    "$schema": "../../configurator/config_schema.json",
+    "names": [
+        "ftSwarm12"
+    ],
+    "type": "rs",
+    "maxled": 2,
+    "io": [
+        {
+            "id": "hostname",
+            "value": "luisevorn"
+        },
+        {
+            "id": "A1",
+            "value": "lufntc"
+        },
+        {
+            "id": "A2",
+            "value": "spcclamp"
+        },
+        {
+            "id": "A3",
+            "value": "spcclampclosed"
+        },
+        {
+            "id": "A6",
+            "value": "lufkey"
+        },
+        {
+            "id": "M1",
+            "value": "oluftransport"
+        },
+        {
+            "id": "M2",
+            "value": "oluftrack"
+        }
+    ]
+}

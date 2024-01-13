@@ -51,12 +51,12 @@ class SwarmBackend(Thread):
 
         mods = [
             desk,
-            leds,
-            emergency,
-            emulator,
-            key,
+            #leds,
+            #emergency,
+            #emulator,
+            #key,
             call,
-            ntc,
+            #ntc,
             notification_modifier,
         ]
 

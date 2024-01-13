@@ -59,7 +59,7 @@ def main():
 
     # configure the number of LEDs
     print("L> Configuring LED count to " + str(config["maxled"]))
-    sw.configure_ledcount(iskelda, config["maxled"])
+    #sw.configure_ledcount(iskelda, config["maxled"])
     sw.into_aliases(iskelda)
     for io in config["io"]:
         print("L> Set alias for " + io["id"] + " to " + io["value"])

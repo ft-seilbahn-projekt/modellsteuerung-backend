@@ -1,0 +1,30 @@
+{
+    "$schema": "../../configurator/config_schema.json",
+    "names": [
+        "ftSwarm5"
+    ],
+    "type": "rs",
+    "maxled": 2,
+    "io": [
+        {
+            "id": "hostname",
+            "value": "notaus"
+        },
+        {
+            "id": "A1",
+            "value": "emergi"
+        },
+        {
+            "id": "A6",
+            "value": "spbntc"
+        },
+        {
+            "id": "M1",
+            "value": "oemergresolve"
+        },
+        {
+            "id": "M2",
+            "value": "oemergproblem"
+        }
+    ]
+}

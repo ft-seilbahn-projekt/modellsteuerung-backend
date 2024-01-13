@@ -1,0 +1,62 @@
+{
+    "$schema": "../../configurator/config_schema.json",
+    "names": [
+        "ftSwarm7"
+    ],
+    "type": "rs",
+    "maxled": 10,
+    "io": [
+        {
+            "id": "hostname",
+            "value": "naampel"
+        },
+        {
+            "id": "A1",
+            "value": "cablelocout"
+        },
+        {
+            "id": "A2",
+            "value": "cablelocin"
+        },
+        {
+            "id": "M1",
+            "value": "ospbtrack"
+        },
+        {
+            "id": "M2",
+            "value": "ospbtransport"
+        },
+        {
+            "id": "LED3",
+            "value": "ofirer"
+        },
+        {
+            "id": "LED4",
+            "value": "ouoner"
+        },
+        {
+            "id": "LED5",
+            "value": "outwor"
+        },
+        {
+            "id": "LED6",
+            "value": "ofirel"
+        },
+        {
+            "id": "LED7",
+            "value": "ouonel"
+        },
+        {
+            "id": "LED8",
+            "value": "outwol"
+        },
+        {
+            "id": "LED9",
+            "value": "ocablelocout"
+        },
+        {
+            "id": "LED10",
+            "value": "ocablelocin"
+        }
+    ]
+}

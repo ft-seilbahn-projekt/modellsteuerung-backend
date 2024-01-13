@@ -2,9 +2,10 @@ from swarm import Toggle, FtSwarmSwitch
 
 
 class FlankedSwitch:
-    def __init__(self, switch: FtSwarmSwitch):
+    def __init__(self, switch: FtSwarmSwitch, invert: bool = False):
         self.switch = switch
         self._state = False
+        self.invert = invert
 
     async def get_toggle(self) -> Toggle:
         return await self.switch.get_toggle()
@@ -25,7 +26,7 @@ class FlankedSwitch:
         return (await self.get_toggle()) == Toggle.TOGGLEDOWN
 
     async def get_flank(self) -> bool:
-        now = await self.get_state()
+        now = (await self.get_state()) != self.invert
 
         if now != self._state:
             self._state = now

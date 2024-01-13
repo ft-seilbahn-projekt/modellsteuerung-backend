@@ -17,15 +17,6 @@ def get_logger(name):
     return logger
 
 
-def update_log_files():
-    if os.path.exists("modellsteuerung.2.log"):
-        os.remove("modellsteuerung.2.log")
-    if os.path.exists("modellsteuerung.1.log"):
-        os.rename("modellsteuerung.1.log", "modellsteuerung.2.log")
-    if os.path.exists("modellsteuerung.log"):
-        os.rename("modellsteuerung.log", "modellsteuerung.1.log")
-
-
 # Initialize loggers
 get_logger("asyncio")
 get_logger("grpc._cython.cygrpc")

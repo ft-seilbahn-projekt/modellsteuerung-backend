@@ -14,14 +14,15 @@ class Input:
     DESK_CONFIRM_SYSTEM = "deskqs"
     DESK_CONFIRM_OPERATION = "deskqb"
     DESK_START = "deskgo"
-    DESK_SYSTEM_DISABLE = "deskkom1"
-    DESK_SYSTEM_ENABLE = "deskkom2"
+    DESK_SYSTEM_DISABLE = "deskkom2"
+    DESK_SYSTEM_ENABLE = "deskkom1"
     DESK_KEY_SWITCH = "deskkey"
-    DESK_CALL = "deskcall"
+    DESK_SIGNAL = "desksig"
 
 
 class Output:
     DESK_ON_OFF = "odeskon"
     DESK_START = "odeskgo"
     DESK_CONFIRM_OPERATION = "odeskcnfop"
+    DESK_OCCUPIED = "odesksta"
     KEY_SWITCH = "okey"

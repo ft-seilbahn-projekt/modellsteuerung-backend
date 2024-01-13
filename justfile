@@ -39,7 +39,14 @@ proto-js-setup:
     npm i @grpc/proto-loader
 
 proxy:
-    ./grpc-proxy/grpc-proxy --backend-port 50051 --proxy-port 8081
+    ./grpc-proxy/grpc-proxy --backend-port 50051 --proxy-port 8080
+
+sa-proxy-init:
+    echo "Download to ./proxy"
+    firefox https://github.com/improbable-eng/grpc-web/releases
+
+sa-proxy:
+    ./proxy --backend_addr localhost:50051 --backend_tls_noverify --run_tls_server=false --allow_all_origins
 
 grpcui:
     grpcui -plaintext localhost:50051

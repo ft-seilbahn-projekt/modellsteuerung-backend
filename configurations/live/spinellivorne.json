@@ -1,0 +1,46 @@
+{
+    "$schema": "../../configurator/config_schema.json",
+    "names": [
+        "ftSwarm8"
+    ],
+    "type": "rs",
+    "maxled": 2,
+    "io": [
+        {
+            "id": "hostname",
+            "value": "spivorne"
+        },
+        {
+            "id": "A1",
+            "value": "spfntc"
+        },
+        {
+            "id": "A2",
+            "value": "spcclamp"
+        },
+        {
+            "id": "A3",
+            "value": "spcwbwrn"
+        },
+        {
+            "id": "A4",
+            "value": "spcwbend"
+        },
+        {
+            "id": "A5",
+            "value": "spcwfwrn"
+        },
+        {
+            "id": "A6",
+            "value": "spcwfrend"
+        },
+        {
+            "id": "M1",
+            "value": "ospftrack"
+        },
+        {
+            "id": "M2",
+            "value": "ospftransport"
+        }
+    ]
+}

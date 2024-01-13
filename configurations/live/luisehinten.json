@@ -1,0 +1,30 @@
+{
+    "$schema": "../../configurator/config_schema.json",
+    "names": [
+        "ftSwarm13"
+    ],
+    "type": "rs",
+    "maxled": 2,
+    "io": [
+        {
+            "id": "hostname",
+            "value": "luisehnd"
+        },
+        {
+            "id": "A1",
+            "value": "lubntc"
+        },
+        {
+            "id": "A6",
+            "value": "lubemerg"
+        },
+        {
+            "id": "M1",
+            "value": "olubtransport"
+        },
+        {
+            "id": "M2",
+            "value": "olubtrack"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "$schema": "../../configurator/config_schema.json",
+    "names": [
+        "ftSwarm10"
+    ],
+    "type": "rs",
+    "maxled": 2,
+    "io": [
+        {
+            "id": "hostname",
+            "value": "mast2"
+        },
+        {
+            "id": "A1",
+            "value": "m2ntc"
+        },
+        {
+            "id": "M2",
+            "value": "om2top"
+        }
+    ]
+}

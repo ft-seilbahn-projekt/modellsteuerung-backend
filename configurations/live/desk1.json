@@ -1,0 +1,46 @@
+{
+    "$schema": "../../configurator/config_schema.json",
+    "names": [
+        "ftSwarm100"
+    ],
+    "type": "rs",
+    "maxled": 2,
+    "io": [
+        {
+            "id": "hostname",
+            "value": "desk1"
+        },
+        {
+            "id": "A1",
+            "value": "deskwrn"
+        },
+        {
+            "id": "A2",
+            "value": "deskemerg"
+        },
+        {
+            "id": "A3",
+            "value": "deskemergsb"
+        },
+        {
+            "id": "A4",
+            "value": "deskspd1"
+        },
+        {
+            "id": "A5",
+            "value": "deskspd2"
+        },
+        {
+            "id": "A6",
+            "value": "deskspd3"
+        },
+        {
+            "id": "M1",
+            "value": "odeskcnfop"
+        },
+        {
+            "id": "M2",
+            "value": "odeskcnfsys"
+        }
+    ]
+}

@@ -44,25 +44,25 @@ class DoppelmayrDesk(Modifier):
         self._in_desk_disable: FtSwarmSwitch | None = None
         self._in_desk_enable: FtSwarmSwitch | None = None
 
-        self._out_desk_on_off: FtSwarmLamp | None = None
+        self._out_desk_occupied: FtSwarmLamp | None = None
         self._out_desk_start: BlinkingLamp | None = None
 
     async def register(self, hw: FtSwarm):
-        self._in_desk_occupied = FlankedSwitch(await hw.get_switch(Input.DESK_OCCUPIED))
+        self._in_desk_occupied = FlankedSwitch(await hw.get_switch(Input.DESK_OCCUPIED), True)
         self._in_desk_speed_dial_1 = await hw.get_switch(Input.DESK_SPEED_1)
         self._in_desk_speed_dial_2 = await hw.get_switch(Input.DESK_SPEED_2)
         self._in_desk_speed_dial_3 = await hw.get_switch(Input.DESK_SPEED_3)
         self._in_desk_forwards = await hw.get_switch(Input.DESK_FORWARDS)
         self._in_desk_backwards = await hw.get_switch(Input.DESK_BACKWARDS)
-        self._in_desk_passenger_mode = FlankedSwitch(await hw.get_switch(Input.DESK_PASSENGER_MODE))
-        self._in_desk_service_mode = FlankedSwitch(await hw.get_switch(Input.DESK_SERVICE_MODE))
-        self._in_desk_confirm_system = FlankedSwitch(await hw.get_switch(Input.DESK_CONFIRM_SYSTEM))
+        self._in_desk_passenger_mode = FlankedSwitch(await hw.get_switch(Input.DESK_PASSENGER_MODE), True)
+        self._in_desk_service_mode = FlankedSwitch(await hw.get_switch(Input.DESK_SERVICE_MODE), True)
+        self._in_desk_confirm_system = FlankedSwitch(await hw.get_switch(Input.DESK_CONFIRM_SYSTEM), True)
         self._in_desk_confirm_operation = await hw.get_switch(Input.DESK_CONFIRM_OPERATION)
-        self._in_desk_start = FlankedSwitch(await hw.get_switch(Input.DESK_START))
+        self._in_desk_start = FlankedSwitch(await hw.get_switch(Input.DESK_START), True)
         self._in_desk_disable = await hw.get_switch(Input.DESK_SYSTEM_DISABLE)
         self._in_desk_enable = await hw.get_switch(Input.DESK_SYSTEM_ENABLE)
 
-        self._out_desk_on_off = await hw.get_lamp(Output.DESK_ON_OFF)
+        self._out_desk_occupied = await hw.get_lamp(Output.DESK_OCCUPIED)
         self._out_desk_start = BlinkingLamp(await hw.get_lamp(Output.DESK_START))
 
     async def process(self):
@@ -135,11 +135,11 @@ class DoppelmayrDesk(Modifier):
             drive_ctrl_state.set_speed(Speed.STOP)
 
     async def on_lock(self):
-        await self._out_desk_on_off.off()
+        await self._out_desk_occupied.off()
         await self._out_desk_start.off()
 
     async def on_unlock(self):
-        await self._out_desk_on_off.on()
+        await self._out_desk_occupied.on()
 
     async def on_state_change(self):
         pass

@@ -1,0 +1,40 @@
+{
+  "$schema": "../../configurator/config_schema.json",
+  "names": ["ftSwarm112"],
+  "type": "rs",
+  "maxled": 3,
+  "io": [
+    {
+      "id": "hostname",
+      "value": "desk4"
+    },
+    {
+      "id": "A1",
+      "value": "deskvw"
+    },
+    {
+      "id": "A2",
+      "value": "deskrw"
+    },
+    {
+      "id": "A3",
+      "value": "deskcall"
+    },
+    {
+      "id": "A6",
+      "value": "deskkey"
+    },
+    {
+      "id": "M1",
+      "value": "odeskserv"
+    },
+    {
+      "id": "M2",
+      "value": "odeskdir"
+    },
+    {
+      "id": "LED3",
+      "value": "okey"
+    }
+  ]
+}
