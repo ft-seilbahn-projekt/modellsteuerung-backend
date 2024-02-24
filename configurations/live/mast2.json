@@ -1,7 +1,7 @@
 {
     "$schema": "../../configurator/config_schema.json",
     "names": [
-        "ftSwarm10"
+        "ftSwarm108"
     ],
     "type": "rs",
     "maxled": 2,
